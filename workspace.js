@@ -68,7 +68,9 @@ cpdefine("inline:com-chilipeppr-workspace-joshl", ["chilipeppr_ready"], function
             this.loadConsoleWidget(function() {
                 setTimeout(function() { $(window).trigger('resize'); }, 100);
             });
-            
+
+//LOAD SAMPLE WIDGET HERE (LINE 73)         
+            this.loadLuaeWidget();
             this.loadTemplateWidget();
             
             // Create our workspace upper right corner triangle menu
@@ -137,6 +139,34 @@ cpdefine("inline:com-chilipeppr-workspace-joshl", ["chilipeppr_ready"], function
                         }
                     );
                 }
+            );
+        },
+
+//COPY AND PASTE ANOTHER LOAD CODE (LINES 146-171) AND EDIT FIELDS IN COMMENTS FIELD BELOW
+        /**
+         * Load the Luae widget via chilipeppr.load()
+         */
+//CHANGE FUNCTION NAME ON LINE 150
+        loadLuaeWidget: function(callback) {
+
+            var that = this;
+
+//CHANGE LINE 156 to html id
+            chilipeppr.load(
+              "com-chilipeppr-widget-luaeditor-instance",
+              "http://raw.githubusercontent.com/chilipeppr/widget-luaeditor/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetLuaeditor
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-luaeditor"], // the id you gave your widget
+                  function(myObjWidgetLuaeditor) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / Lua Editor just got loaded.", myObjWidgetLuaeditor);
+                    myObjWidgetLuaeditor.init();
+                  }
+                );
+              }
             );
         },
         /**
